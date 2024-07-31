@@ -52,7 +52,7 @@ int    print_contact(PhoneBook &phonebook) {
             int i = std::stoi(check) - 1;
             std::string check = phonebook.contact[i].get_fname();
             if (check.size() == 0) {
-                std::cout << "This index is empty";
+                std::cout << "This index is empty (are you blind?)" << std::endl;
                 continue ;
             }
             std::cout << "First name : " << check << "\n";
@@ -63,7 +63,7 @@ int    print_contact(PhoneBook &phonebook) {
             i++;
         }
         else
-            std::cout << "this was invalid\n";
+            std::cout << "this was invalid (try to do better)\n";
     }
     return 0;
 }
