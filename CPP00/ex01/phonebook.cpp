@@ -17,7 +17,7 @@ void    print_arg(std::string str) {
     }
 }
 
-void    print_contact(PhoneBook &phonebook) {
+int    print_contact(PhoneBook &phonebook) {
     int i = 0;
     std::string str = "12345678";
     std::string check;
@@ -39,13 +39,31 @@ void    print_contact(PhoneBook &phonebook) {
     }
     while (1) {
         std::cout << "Pick an index to view info or 9 to leave : ";
-        std::cin >> check;
+        std::getline(std::cin, check);
+        if (std::cin.eof()) {
+            std::cout << "DONT PRESS CTRL + D" << std::endl;
+            return 1;
+        }
+        if (check.size() == 0)
+            continue ;
         if (check.compare("9") == 0)
-            return ;
-        int i = std::stoi(check);
-        if (i < 9 && i > 0)
-            std::cout << "this was valid";
+            return 0;
+        if (check.size() == 1 && isdigit(check[0]) != 0) {
+            int i = std::stoi(check) - 1;
+            std::string check = phonebook.contact[i].get_fname();
+            if (check.size() == 0) {
+                std::cout << "This index is empty";
+                continue ;
+            }
+            std::cout << "First name : " << check << "\n";
+            std::cout << "Last name : " << phonebook.contact[i].get_lname() << "\n";
+            std::cout << "Nickname : " << phonebook.contact[i].get_nname() << "\n";
+            std::cout << "Phone Number : " << phonebook.contact[i].get_pnum() << "\n";
+            std::cout << "Darkest Secret : " << phonebook.contact[i].get_secret() << "\n";
+            i++;
+        }
         else
-            std::cout << "this was invalid";
+            std::cout << "this was invalid\n";
     }
+    return 0;
 }

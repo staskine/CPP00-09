@@ -57,6 +57,6 @@ class PhoneBook {
         Contact contact[8];
 };
 
-void    print_contact(PhoneBook &phonebook);
+int    print_contact(PhoneBook &phonebook);
 
 #endif
