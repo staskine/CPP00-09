@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
             while (found != std::string::npos) {
                 buf.erase(found, s1.size());
                 buf.insert(found, s2);
-                found = buf.find(argv[2]);
+                found = buf.find(argv[2], found + s2.size());
             }
             
             std::ofstream outFile(argv[1] + line);
