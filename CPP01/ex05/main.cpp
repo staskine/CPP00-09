@@ -2,7 +2,14 @@
 
 int main(int argc, char **argv) {
     try {
-        if ()
+        if (argc != 2)
+        {
+            std::cerr << "Bro ;_:" << std::endl;
+        }
+        else
+        {
+            
+        }
     }
     catch (std::exception& e)
     {
