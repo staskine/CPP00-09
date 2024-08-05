@@ -1,6 +1,6 @@
 NAME = phonebook
 
-SOURCE = contact.cpp \
+SOURCE = Contact.cpp \
 			main.cpp \
 			functions.cpp
 		

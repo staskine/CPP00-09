@@ -1,6 +1,6 @@
 NAME = megaphone
 
-SOURCE = megaphone.cpp
+SOURCE = Megaphone.cpp
 		
 OBJECT = $(SOURCE:.cpp=.o)
 
