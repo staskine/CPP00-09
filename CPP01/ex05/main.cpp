@@ -8,7 +8,8 @@ int main(int argc, char **argv) {
         }
         else
         {
-            
+            Harl harl;
+            harl.complain(argv[1]);
         }
     }
     catch (std::exception& e)

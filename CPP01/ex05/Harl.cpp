@@ -1,4 +1,4 @@
-#include <Harl.hpp>
+#include "Harl.hpp"
 
 void Harl::debug(void) {
     std::cout << "Harl feels like you are being difficult. Stop or he will escalate." << std::endl;
@@ -17,19 +17,23 @@ void Harl::error(void) {
 };
 
 void Harl::complain(std::string level) {
-    int i = level.stoi(level);
+    std::string values[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int i = 0;
+    while (i < 4 && values[i].compare(level))
+        i++;
+    i++;
     switch (i) {
         case 1:
-            *debug();
+            this->Harl::debug();
             break ;
         case 2:
-            *info();
+            this->Harl::info();
             break ;
         case 3:
-            *warning();
+            this->Harl::warning();
             break ;
         case 4:
-            *error();
+            this->Harl::error();
             break ;
         default:
             std::cout << "Harl is upset you used invalid input" << std::endl;
