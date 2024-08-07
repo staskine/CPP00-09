@@ -17,26 +17,16 @@ void Harl::error(void) {
 };
 
 void Harl::complain(std::string level) {
+    void (Harl::*p[]) () =  {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string values[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     int i = 0;
-    while (i < 4 && values[i].compare(level))
+    while (i < 4 && values[i].compare(level)) {
         i++;
-    i++;
-    switch (i) {
-        case 1:
-            this->Harl::debug();
-            break ;
-        case 2:
-            this->Harl::info();
-            break ;
-        case 3:
-            this->Harl::warning();
-            break ;
-        case 4:
-            this->Harl::error();
-            break ;
-        default:
-            std::cout << "Harl is upset you used invalid input" << std::endl;
     }
-};
+    if (i == 4) {
+        std::cout << "Harl is upset you don't seem to know how to type" << std::endl;
+        return ;
+    }
+    (this->*p[i]) ();
+}
 
