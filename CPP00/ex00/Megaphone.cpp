@@ -1,8 +1,9 @@
 #include <iostream>
+#include <ctype.h>
 
 int main(int argc, char **argv)
 {
-    char c;
+    unsigned char c;
     if (argc < 2)
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
     for (int i = 1; argv[i]; i++)
@@ -10,7 +11,10 @@ int main(int argc, char **argv)
         std::string str = argv[i];
         for (unsigned long x = 0; x < str.size(); x++)
         {
-            c = toupper(argv[i][x]),
+            if (isalpha(str[x]))
+                c = toupper(str[x]);
+            else
+                c = str[x];
             std::cout << c;
         }   
     }
