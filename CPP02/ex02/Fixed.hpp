@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:31:06 by sataskin          #+#    #+#             */
-/*   Updated: 2024/09/24 12:07:46 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:24:50 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ class Fixed {
         Fixed operator+(const Fixed &arit);
         Fixed operator/(const Fixed &arit);
         Fixed operator*(const Fixed &arit);
+
+		//Increment and Decrement
+		Fixed& operator++(void);
+		Fixed& operator--(void);
+		Fixed operator++(int);
+		Fixed operator--(int);
+
+		//min and max functions
+		static Fixed& max(Fixed& a, Fixed& b);
+		static Fixed& min(Fixed& a, Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
+		static const Fixed& min(const Fixed& a, const Fixed& b);
 };
 
 std::ostream& operator<<(std::ostream &output, const Fixed &obj);
@@ -53,15 +65,6 @@ std::ostream& operator<<(std::ostream &output, const Fixed &obj);
 
 /*
         Needed function prototypes
-
-        Fixed operator+(const Fixed &nbr);
-        Fixed operator-(const Fixed &nbr);
-        Fixed operator*(const Fixed &nbr);
-		Fixed operator/(const Fixed &nbr);
-		Fixed &operator++(void);
-		Fixed operator++(int);
-		Fixed &operator--(void);
-		Fixed operator--(int);
 
 		static Fixed& min(Fixed &a, Fixed &b);
 		static const Fixed& min(const Fixed &a, const Fixed &b);
