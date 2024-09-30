@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:44:28 by sataskin          #+#    #+#             */
-/*   Updated: 2024/09/30 10:02:20 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:33:43 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class ClapTrap {
 		unsigned int attackDamage;
 	public:
 		ClapTrap();
+		ClapTrap(std::string word);
 		ClapTrap(const ClapTrap &obj);
 		ClapTrap& operator=(const ClapTrap& obj);
 		~ClapTrap();
