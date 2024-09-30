@@ -6,14 +6,15 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/20 10:30:53 by sataskin          #+#    #+#              #
-#    Updated: 2024/09/20 10:30:54 by sataskin         ###   ########.fr        #
+#    Updated: 2024/09/30 11:04:25 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fixed
+NAME = ScavTrap
 
 SOURCE = main.cpp \
-			Fixed.cpp
+			ScavTrap.cpp \
+			ClapTrap.cpp
 
 OBJECT = $(SOURCE:.cpp=.o)
 
