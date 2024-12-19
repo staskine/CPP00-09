@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/17 15:27:04 by sataskin         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:36:53 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Form {
 		const std::string getName() const;
 		const std::string getSign();
 		const int getGradeToSign() const;
-		const getGradeToExecute() const;
+		const int getGradeToExecute() const;
 		
 		class GradeTooHighException: public std::exception {
 			public:
@@ -45,7 +45,7 @@ class Form {
 				virtual const char* what() const throw();
 		};
 		
-		beSigned(Bureaucrat& obj) const;	
+		void beSigned(Bureaucrat& obj) const;	
 };
 
 std::ostream& operator<<(std::ostream &output, const Form &obj);
