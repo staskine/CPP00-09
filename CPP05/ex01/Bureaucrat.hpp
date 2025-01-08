@@ -6,15 +6,19 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:11:21 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/14 13:01:22 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:04:40 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+
 # include <exception>
 # include <iostream>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 	private:
@@ -42,7 +46,9 @@ class Bureaucrat {
 		class GradeTooLowException: public std::exception {
 			public:
 				virtual const char* what() const throw();
-		};			
+		};
+
+		void signForm(Form& obj) const;
 };
 
 std::ostream& operator<<(std::ostream &output, const Bureaucrat &obj);

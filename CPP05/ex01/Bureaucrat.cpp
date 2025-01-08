@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:12:04 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/19 11:09:48 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:29:21 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 std::ostream& operator<<(std::ostream &output, const Bureaucrat &obj) {
 	output << obj.getName() << ", bureaucrat grade " << obj.getGrade(); 
 	return output;
+}
+
+void Bureaucrat::signForm(Form& obj) const {
+	if (obj.getSign() == true)
+		std::cout << _name << " signed " << obj.getName() << std::endl;
+	else
+		std::cout << _name << " couldn't sign " << obj.getName() << " because level too low" << std::endl;
 }

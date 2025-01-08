@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:23:51 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/16 11:41:00 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:21:48 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ int main() {
 		Bureaucrat Burry;
 		std::cout << Burry << "\n-> will increment" << std::endl;
 		Burry.incrementGrade();
-		std::cout << Burry << "\n-> will decrement" << std::endl;
-		Burry.decrementGrade();
+		std::cout << "Now making a form" << std::endl;
+		Form formy;
 		std::cout << Burry << std::endl;
-		std::cout << "->Now I'm going to decrement below the lowest level\n";
-		Burry.decrementGrade();
+		std::cout << formy << std::endl;
+		std::cout << "->Now I'm going to sign the form\n";
+		formy.beSigned(Burry);
 	}
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
+/*
 	try {
 		std::cout << "\n\n\n" << "-> Making a bureaucrat with input" << std::endl;
 		Bureaucrat Burton("Burton", 2);
@@ -63,6 +64,6 @@ int main() {
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << std::endl;
-	}
+	}*/
 	return 0;
 }	

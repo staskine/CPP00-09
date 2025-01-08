@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/19 11:36:53 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:27:00 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <exception>
 # include <iostream>
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
 	private:
@@ -30,10 +32,10 @@ class Form {
 		Form& operator=(const Form& obj);
 		~Form();
 
-		const std::string getName() const;
-		const std::string getSign();
-		const int getGradeToSign() const;
-		const int getGradeToExecute() const;
+		std::string getName() const;
+		bool getSign() const;
+		int getGradeToSign() const;
+		int getGradeToExecute() const;
 		
 		class GradeTooHighException: public std::exception {
 			public:
@@ -45,7 +47,7 @@ class Form {
 				virtual const char* what() const throw();
 		};
 		
-		void beSigned(Bureaucrat& obj) const;	
+		void beSigned(Bureaucrat& obj);	
 };
 
 std::ostream& operator<<(std::ostream &output, const Form &obj);
