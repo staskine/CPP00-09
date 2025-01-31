@@ -11,6 +11,9 @@ Welcome to my **C++ Module Series**! This collection of modules showcases my lea
 - **Module 2**: Ad-hoc Polymorphism, Overloads, and Canonical Classes
 - **Module 3**: Inheritance
 - **Module 4**: Subtype Polymorphism, Abstract Classes, and Interfaces
+- **Module 5**: Try/Catch and Exception Handling
+
+
 
 ---
 
