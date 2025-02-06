@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:11:21 by sataskin          #+#    #+#             */
-/*   Updated: 2024/12/14 13:01:22 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:58:50 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Bureaucrat {
 		~Bureaucrat();
 
 		std::string getName() const;
-		int getGrade() const;
+		int 		getGrade() const;
 
 		void incrementGrade();
 		void decrementGrade();

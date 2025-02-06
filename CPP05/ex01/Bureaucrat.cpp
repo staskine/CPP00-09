@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:12:04 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/08 13:29:21 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:22:37 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void Bureaucrat::signForm(Form& obj) const {
 	if (obj.getSign() == true)
 		std::cout << _name << " signed " << obj.getName() << std::endl;
 	else
-		std::cout << _name << " couldn't sign " << obj.getName() << " because level too low" << std::endl;
+		std::cout << _name << " couldn't sign " << obj.getName() << " because level was too low" << std::endl;
 }

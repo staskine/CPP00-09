@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:23:51 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/08 13:21:48 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:21:40 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,7 @@ int main() {
 		std::cout << formy << std::endl;
 		std::cout << "->Now I'm going to sign the form\n";
 		formy.beSigned(Burry);
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-/*
-	try {
-		std::cout << "\n\n\n" << "-> Making a bureaucrat with input" << std::endl;
-		Bureaucrat Burton("Burton", 2);
-		std::cout << Burton << "\n-> will increment" << std::endl;
-		Burton.incrementGrade();
-		std::cout << Burton << "\n-> will decrement" << std::endl;
-		Burton.decrementGrade();
-		std::cout << Burton << std::endl;
-		std::cout << "-> Now I'm going to increment above the highest level\n";
-		Burton.incrementGrade();
-		Burton.incrementGrade();
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-
-	try {
-		std::cout << "\n\n\n-> I will now make a Bureaucrat that is above highest level\n";
-		Bureaucrat Bur("Higih", 0);
+		std::cout << "\n" << formy << std::endl;
 	}
 	catch (std::exception & e)
 	{
@@ -58,12 +32,16 @@ int main() {
 	}
 	
 	try {
-		std::cout << "\n\n\n-> I will now make a Bureaucrat that is below lowest level\n";
-		Bureaucrat Bur("lowi", 166);
+		Bureaucrat Burry("Burry", 20);
+		Form form1("Important Form", 1, 1);
+		std::cout << "->Now I will try to sign a form that can't be signed by Bureaucrat\n" << std::endl;
+		std::cout << Burry << "\n" << std::endl;
+		std::cout << form1 << std::endl;
+		form1.beSigned(Burry);
 	}
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << std::endl;
-	}*/
+	}
 	return 0;
 }	

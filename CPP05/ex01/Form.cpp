@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/08 13:33:03 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:19:15 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ Form::Form(): _name("Basic"), _gradeToSign(150), _gradeToExecute(150) {
 }
 
 Form::Form(std::string name, int sign, int execute): _name(name), _gradeToSign(sign), _gradeToExecute(execute) {
+	if (sign < 1 || execute < 1)
+		throw GradeTooHighException();
+	if (sign > 150 || execute > 150)
+		throw GradeTooLowException();
 	_signed = false;
 }
 
@@ -67,6 +71,9 @@ void Form::beSigned(Bureaucrat& obj) {
 }
 
 std::ostream& operator<<(std::ostream &output, const Form &obj) {
-	output << obj.getName() << ", form grade to sign " << obj.getGradeToSign() << std::endl;
+	std::string amISigned = "false";
+	if (obj.getSign() == true)
+		amISigned = "true";
+	output << "Form name: " << obj.getName() << "\nForm grade to sign: " << obj.getGradeToSign() << "\nForm signed: " << amISigned << "\nAnd grade to execute: " << obj.getGradeToExecute() << std::endl;
 	return output; 
 }

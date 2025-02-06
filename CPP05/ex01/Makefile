@@ -6,11 +6,11 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 11:21:06 by sataskin          #+#    #+#              #
-#    Updated: 2025/01/08 13:21:57 by sataskin         ###   ########.fr        #
+#    Updated: 2025/02/06 14:21:32 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = Form
 
 SOURCE = main.cpp \
 			Bureaucrat.cpp \
