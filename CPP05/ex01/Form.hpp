@@ -6,12 +6,12 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/01/08 13:27:00 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef Form_HPP
+# define Form_HPP
 
 # include <exception>
 # include <iostream>
