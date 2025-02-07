@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:11:21 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:49:12 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 # include <exception>
 # include <iostream>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private:
@@ -48,7 +48,8 @@ class Bureaucrat {
 				virtual const char* what() const throw();
 		};
 
-		void signForm(Form& obj) const;
+		void signForm(AForm& obj) const;
+		void executeForm(AForm const& form);
 };
 
 std::ostream& operator<<(std::ostream &output, const Bureaucrat &obj);

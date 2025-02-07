@@ -1,10 +1,4 @@
-ShrubberyCreationForm.[{h, hpp},cpp], +
-RobotomyRequestForm.[{h, hpp},cpp], PresidentialPardonForm.[{h, hpp},cpp]
 
-Since you now have basic forms, it’s time to make a few more that actually do something.
-In all cases, the base class Form must be an abstract class, and therefore should be
-renamed AForm. Keep in mind the form’s attributes need to remain private and that
-they are in the base class.
 Add the following concrete classes:
 • ShrubberyCreationForm: Required grades: sign 145, exec 137
 Create a file <target>_shrubbery in the working directory, and writes ASCII trees

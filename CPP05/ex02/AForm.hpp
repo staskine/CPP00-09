@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:43:26 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:02:35 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class AForm {
 	public:
 		AForm();
 		AForm(std::string name, int sign, int execute);
-		AForm(const Form& obj);
+		AForm(const AForm& obj);
 		AForm& operator=(const AForm& obj);
 		~AForm();
 
@@ -46,11 +46,16 @@ class AForm {
 			public:
 				virtual const char* what() const throw();
 		};
+
+		class FormNotSignedException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 		
 		void beSigned(Bureaucrat& obj);	
-		virtual execute(Bureaucrat const & executor) const = 0;
+		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream &output, const Form &obj);
+std::ostream& operator<<(std::ostream &output, const AForm &obj);
 
 #endif

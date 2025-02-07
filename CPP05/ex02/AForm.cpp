@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:44:29 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:02:29 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ const char* AForm::GradeTooHighException::what() const throw() {
 const char* AForm::GradeTooLowException::what() const throw() {
 	return ("Grade is too low\n");
 }
+
+const char* AForm::FormNotSignedException::what() const throw() {
+	return ("Form has not been signed\n");
+}
 		
 void AForm::beSigned(Bureaucrat& obj) {
 	
@@ -67,10 +71,13 @@ void AForm::beSigned(Bureaucrat& obj) {
 	if (_signed == false) {
 		throw GradeTooLowException();
 	}
-	
 }
 
-std::ostream& operator<<(std::ostream &output, const Form &obj) {
+void execute(Bureaucrat const & executor) {
+	(void)executor;
+}
+
+std::ostream& operator<<(std::ostream &output, const AForm &obj) {
 	std::string amISigned = "false";
 	if (obj.getSign() == true)
 		amISigned = "true";
