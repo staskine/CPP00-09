@@ -16,6 +16,7 @@
 # include "PresidentialPardonForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
+# include "AForm.hpp"
 
 class Intern {
 	public:
