@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/07 13:02:35 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:56:58 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ class AForm {
 		};
 
 		class FormNotSignedException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class newFailedException: public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};

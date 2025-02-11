@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/07 13:02:29 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:12:46 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ const char* AForm::GradeTooLowException::what() const throw() {
 const char* AForm::FormNotSignedException::what() const throw() {
 	return ("Form has not been signed\n");
 }
+
+const char* AForm::newFailedException::what() const throw() {
+	return ("New failed\n");
+}
 		
 void AForm::beSigned(Bureaucrat& obj) {
 	
@@ -73,8 +77,16 @@ void AForm::beSigned(Bureaucrat& obj) {
 	}
 }
 
-void execute(Bureaucrat const & executor) {
-	(void)executor;
+void AForm::execute(Bureaucrat const & executor) {
+	if (this->_signed == true)
+	{
+		if (executor.getGrade() <= this->_gradeToExecute)
+			executor.signForm(this);
+		else
+			throw (GradeTooLowException());
+	}
+	else
+		throw (FormNotSignedException());
 }
 
 std::ostream& operator<<(std::ostream &output, const AForm &obj) {
