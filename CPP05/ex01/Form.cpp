@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:35:30 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,13 @@ const char* Form::GradeTooLowException::what() const throw() {
 	return ("Grade is too low\n");
 }
 		
-void Form::beSigned(Bureaucrat& obj) {
+void Form::beSigned(const Bureaucrat& obj) {
 	
 	if (obj.getGrade() <= this->_gradeToSign)
 		_signed = true;
-	obj.signForm(*this);
-	if (_signed == false) {
+	else {
 		throw GradeTooLowException();
 	}
-	
 }
 
 std::ostream& operator<<(std::ostream &output, const Form &obj) {

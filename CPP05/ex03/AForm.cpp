@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/11 12:12:46 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:39:48 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,11 @@ const char* AForm::newFailedException::what() const throw() {
 	return ("New failed\n");
 }
 		
-void AForm::beSigned(Bureaucrat& obj) {
+void AForm::beSigned(const Bureaucrat& obj) {
 	
 	if (obj.getGrade() <= this->_gradeToSign)
 		_signed = true;
-	obj.signForm(*this);
-	if (_signed == false) {
+	else {
 		throw GradeTooLowException();
 	}
 }

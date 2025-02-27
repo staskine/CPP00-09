@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/07 13:02:29 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:39:53 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,11 @@ const char* AForm::FormNotSignedException::what() const throw() {
 	return ("Form has not been signed\n");
 }
 		
-void AForm::beSigned(Bureaucrat& obj) {
+void AForm::beSigned(const Bureaucrat& obj) {
 	
 	if (obj.getGrade() <= this->_gradeToSign)
 		_signed = true;
-	obj.signForm(*this);
-	if (_signed == false) {
+	else {
 		throw GradeTooLowException();
 	}
 }

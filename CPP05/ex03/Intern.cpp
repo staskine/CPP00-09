@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:56:36 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/11 11:56:48 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:41:11 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,21 @@ static AForm *makePresidentialPardonForm(const std::string target) {
 }
 
 static AForm *makeShrubberyCreationForm(const std::string target) {
-	
+	try {
+		return (new ShrubberyCreationForm(target));
+	}
+	catch {
+		throw newFailedException();
+	}
 }
 
 static AForm *makeRobotomyRequestForm(const std::string target) {
-	
+	try {
+		return (new RobotomyRequestForm(target));
+	}
+	catch {
+		throw newFailedException();
+	}
 }
 
 AForm Intern::*makeForm(std::string form, std::string target)

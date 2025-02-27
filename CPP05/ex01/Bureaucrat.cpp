@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:12:04 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:34:29 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,13 @@ std::ostream& operator<<(std::ostream &output, const Bureaucrat &obj) {
 }
 
 void Bureaucrat::signForm(Form& obj) const {
-	if (obj.getSign() == true)
-		std::cout << _name << " signed " << obj.getName() << std::endl;
+	if (obj.getSign() == false) {
+		obj.beSigned(*this);
+		if (obj.getSign() == true)
+			std::cout << _name << " signed " << obj.getName() << std::endl;
+		else
+			std::cout << _name << " couldn't sign " << obj.getName() << " because level was too low" << std::endl;
+	}
 	else
-		std::cout << _name << " couldn't sign " << obj.getName() << " because level was too low" << std::endl;
+		std::cout << _name << " is already signed" << std::endl;
 }

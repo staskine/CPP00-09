@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:35:46 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Form {
 				virtual const char* what() const throw();
 		};
 		
-		void beSigned(Bureaucrat& obj);	
+		void beSigned(const Bureaucrat& obj);	
 };
 
 std::ostream& operator<<(std::ostream &output, const Form &obj);

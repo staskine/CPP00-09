@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:23:51 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:32 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:31:09 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main() {
 		std::cout << Burry << std::endl;
 		std::cout << Formy << std::endl;
 		std::cout << "->Now I'm going to sign the Form\n";
-		Formy.beSigned(Burry);
+		Burry.signForm(Formy);
 		std::cout << "\n" << Formy << std::endl;
 	}
 	catch (std::exception & e)
@@ -37,7 +37,7 @@ int main() {
 		std::cout << "->Now I will try to sign a Form that can't be signed by Bureaucrat\n" << std::endl;
 		std::cout << Burry << "\n" << std::endl;
 		std::cout << Form1 << std::endl;
-		Form1.beSigned(Burry);
+		Burry.signForm(Form1);
 	}
 	catch (std::exception & e)
 	{

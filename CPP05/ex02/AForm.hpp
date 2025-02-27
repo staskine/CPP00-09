@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/07 13:02:35 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:37:04 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ class AForm {
 				virtual const char* what() const throw();
 		};
 		
-		void beSigned(Bureaucrat& obj);	
+		void beSigned(const Bureaucrat& obj);	
 		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
