@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 14:47:51 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/07 14:51:38 by sataskin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef INTERN_HPP
 # define INTERN_HPP
 
+# include "Bureaucrat.hpp"
 # include "PresidentialPardonForm.hpp"
-# include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
-# include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
 
 class Intern {
 	public:
@@ -25,7 +13,7 @@ class Intern {
 		Intern& operator=(const Intern& obj);
 		~Intern();
 
-		AForm *makeForm(std::string form, std::string target);
+		AForm *makeForm(const std::string form, const std::string target);
 };
 
 #endif

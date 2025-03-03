@@ -6,7 +6,7 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 11:21:06 by sataskin          #+#    #+#              #
-#    Updated: 2025/02/07 13:58:36 by sataskin         ###   ########.fr        #
+#    Updated: 2025/03/03 11:34:43 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SOURCE = main.cpp \
 			AForm.cpp \
 			PresidentialPardonForm.cpp \
 			RobotomyRequestForm.cpp \
-			ShrubberyCreationForm.cpp
+			ShrubberyCreationForm.cpp \
+			Intern.cpp
 
 OBJECT = $(SOURCE:.cpp=.o)
 

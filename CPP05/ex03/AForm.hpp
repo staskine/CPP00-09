@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:42:37 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/27 13:37:33 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:53:56 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AForm {
 		AForm(std::string name, int sign, int execute);
 		AForm(const AForm& obj);
 		AForm& operator=(const AForm& obj);
-		~AForm();
+		virtual ~AForm();
 
 		std::string getName() const;
 		bool getSign() const;

@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:22:50 by sataskin          #+#    #+#             */
-/*   Updated: 2025/02/27 13:39:48 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:27:37 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,6 @@ void AForm::beSigned(const Bureaucrat& obj) {
 	else {
 		throw GradeTooLowException();
 	}
-}
-
-void AForm::execute(Bureaucrat const & executor) {
-	if (this->_signed == true)
-	{
-		if (executor.getGrade() <= this->_gradeToExecute)
-			executor.signForm(this);
-		else
-			throw (GradeTooLowException());
-	}
-	else
-		throw (FormNotSignedException());
 }
 
 std::ostream& operator<<(std::ostream &output, const AForm &obj) {
