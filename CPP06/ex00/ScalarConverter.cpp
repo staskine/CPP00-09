@@ -26,18 +26,60 @@ static bool amISpecial(std::string argument) {
 
 static void printer(int i, char c, float f, double d) {
 	std::cout << "char: "; 
-	if (!isprint(c))
+	if (!std::isprint(c))
 		std::cout << "Non displayable\n";
 	else
 		std::cout << c << "\n";
+	
 	std::cout << "int: ";
 	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
 		std::cout << "impossible\n";
 	} else {
 		std::cout << i << std::endl;
 	}
-	std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f\ndouble: " << d << std::endl; 
-	
+
+	std::cout << std::fixed << std::setprecision(1)<< "float: ";
+	if (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max()) {
+		std::cout << "impossible\n";
+	} else {
+		std::cout << f << "f" << std::endl;
+	}
+
+	std::cout << "double: ";
+	if (!std::isfinite(d)) {
+		std::cout << "impossible\n";
+	} else {
+		std::cout << d << std::endl;
+	}
+}
+
+static char whatAmI(std::string argument)
+{
+	bool dot = false;
+	for (size_t i = 0; i < argument.length(); i++) {
+		char c = argument[i];
+		if (isdigit(c))
+			continue ;
+		else if (i == 0 && (argument[i] == '-' || argument[i] == '+'))
+			continue ;
+		else if (c == '.' ) {
+			if (dot == true || i == argument.length() - 1 || i == 0)
+				return 'e';
+			else 
+				dot = true;
+		}
+		else if (c == 'f') {
+			if (i != argument.length() - 1 || argument[i - 1] == '.')
+				return ('e');
+			else 
+				return ('f');
+		}
+		else 
+			return ('e');
+	}
+	if (dot == true)
+		return ('d');
+	return ('i');
 }
 
 void ScalarConverter::convert(std::string argument) {
@@ -48,8 +90,21 @@ void ScalarConverter::convert(std::string argument) {
 		int i = static_cast<int>(c);
 		float f = static_cast<float>(c);
 		double d = static_cast<double>(c);
-		std::cout << "char: " << c << "\nint: " << i << "\nfloat: " << f << "f\ndouble: " << d << std::endl;
+		printer(i, c, f, d);
 	} else {
-		std::cout << "Not found" << std::endl;
+		char _me = whatAmI(argument); // i, f, d, e for error
+		if (_me == 'e') {
+			std::cout << "ERROR: Invalid input" << std::endl;
+			return ;
+		} else {
+			std::cout << "Okay..." << std::endl;
+		}
+		// if (_me == 'i') {
+		// 	handleInt(argument);
+		// } else if (_me == 'f') {
+		// 	handleFloat(argument);
+		// } else
+		// 	handleDouble(argument);
+
 	}
 }
