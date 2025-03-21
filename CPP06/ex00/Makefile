@@ -6,9 +6,11 @@ SOURCE = main.cpp \
 
 OBJECT = $(SOURCE:.cpp=.o)
 
+HEADER = ScalarConverter.hpp
+
 all: $(NAME)
 
-$(NAME): $(OBJECT)
+$(NAME): $(OBJECT) $(HEADER)
 	c++ -Wall -Wextra -Werror $(OBJECT) -o $(NAME)
 
 %.o: %.cpp

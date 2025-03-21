@@ -4,6 +4,9 @@
 # include <limits> 
 # include <iomanip>
 # include <cmath>
+# include <cctype>
+# include <regex>
+# include <stdexcept>
 
 class ScalarConverter {
 	public:

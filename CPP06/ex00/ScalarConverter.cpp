@@ -53,39 +53,168 @@ static void printer(int i, char c, float f, double d) {
 	}
 }
 
+static bool amIOkay(std::string input)
+{
+	std::regex myRegex(R"(^\d+(\.\d+)?f?$)"); 
+    return std::regex_match(input, myRegex);
+}
+
 static char whatAmI(std::string argument)
 {
+	if (amIOkay(argument) == false)
+		return 'e';
 	bool dot = false;
 	for (size_t i = 0; i < argument.length(); i++) {
 		char c = argument[i];
-		if (isdigit(c))
-			continue ;
-		else if (i == 0 && (argument[i] == '-' || argument[i] == '+'))
-			continue ;
-		else if (c == '.' ) {
-			if (dot == true || i == argument.length() - 1 || i == 0)
-				return 'e';
-			else 
-				dot = true;
-		}
-		else if (c == 'f') {
-			if (i != argument.length() - 1 || argument[i - 1] == '.')
-				return ('e');
-			else 
-				return ('f');
-		}
-		else 
-			return ('e');
+		if (c == 'f')
+			return 'f';
+		if (c == '.')
+			dot = true;
 	}
-	if (dot == true)
+	if (dot)
 		return ('d');
 	return ('i');
+}
+
+static void handleInt(const std::string& input) {
+    int intValue;
+    float floatValue;
+    double doubleValue;
+    char charValue;
+
+    // Try to convert string to int
+    try {
+        intValue = std::stoi(input);
+    } catch (const std::exception&) {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+        return;
+    }
+
+    // Convert int to char
+    if (intValue < std::numeric_limits<char>::min() || intValue > std::numeric_limits<char>::max()) {
+        std::cout << "char: impossible\n";
+    } else if (std::isprint(static_cast<char>(intValue))) {
+        charValue = static_cast<char>(intValue);
+        std::cout << "char: '" << charValue << "'\n";
+    } else {
+        std::cout << "char: Non displayable\n";
+    }
+
+    // Print int
+    std::cout << "int: " << intValue << "\n";
+
+    // Convert to float and double
+    try {
+        floatValue = std::stof(input);
+        doubleValue = std::stod(input);
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "float: " << floatValue << "f\n";
+        std::cout << "double: " << doubleValue << "\n";
+    } catch (const std::exception&) {
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+    }
+}
+
+static void handleFloat(const std::string& input) {
+    int intValue;
+    float floatValue;
+    double doubleValue;
+    char charValue;
+
+    // Try to convert string to int
+    try {
+        intValue = std::stoi(input);
+    } catch (const std::exception&) {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+        return;
+    }
+
+    // Convert int to char
+    if (intValue < std::numeric_limits<char>::min() || intValue > std::numeric_limits<char>::max()) {
+        std::cout << "char: impossible\n";
+    } else if (std::isprint(static_cast<char>(intValue))) {
+        charValue = static_cast<char>(intValue);
+        std::cout << "char: '" << charValue << "'\n";
+    } else {
+        std::cout << "char: Non displayable\n";
+    }
+
+    // Print int
+    std::cout << "int: " << intValue << "\n";
+
+    // Convert to float and double
+    try {
+        floatValue = std::stof(input);
+        doubleValue = std::stod(input);
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "float: " << floatValue << "f\n";
+        std::cout << "double: " << doubleValue << "\n";
+    } catch (const std::exception&) {
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+    }
+}
+
+void handleDouble(const std::string& input) {
+    double doubleValue;
+    int intValue;
+    float floatValue;
+    char charValue;
+
+    // Try to convert string to double
+    try {
+        doubleValue = std::stod(input);
+    } catch (const std::exception&) {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+        return;
+    }
+
+    // Convert double to int
+    if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max()) {
+        std::cout << "int: impossible\n";
+    } else {
+        intValue = static_cast<int>(doubleValue);
+        std::cout << "int: " << intValue << "\n";
+    }
+
+    // Convert int to char (only if int conversion was valid)
+    if (doubleValue < std::numeric_limits<char>::min() || doubleValue > std::numeric_limits<char>::max()) {
+        std::cout << "char: impossible\n";
+    } else if (std::isprint(static_cast<char>(intValue))) {
+        charValue = static_cast<char>(intValue);
+        std::cout << "char: '" << charValue << "'\n";
+    } else {
+        std::cout << "char: Non displayable\n";
+    }
+
+    // Convert double to float
+    if (doubleValue < -std::numeric_limits<float>::max() || doubleValue > std::numeric_limits<float>::max()) {
+        std::cout << "float: impossible\n";
+    } else {
+        floatValue = static_cast<float>(doubleValue);
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "float: " << floatValue << "f\n";
+    }
+
+    // Print double
+    std::cout << std::fixed << std::setprecision(1);
+	std::cout << "double: " << doubleValue << "\n";
 }
 
 void ScalarConverter::convert(std::string argument) {
 	if (amISpecial(argument) == true)
 			return ;
-	if (argument.length() == 1 && !isdigit(argument[0])) {
+	if (argument.length() == 1 && !std::isdigit(argument[0])) {
 		char c = argument[0];
 		int i = static_cast<int>(c);
 		float f = static_cast<float>(c);
@@ -96,15 +225,12 @@ void ScalarConverter::convert(std::string argument) {
 		if (_me == 'e') {
 			std::cout << "ERROR: Invalid input" << std::endl;
 			return ;
-		} else {
-			std::cout << "Okay..." << std::endl;
+		} else if (_me == 'i') {
+			handleInt(argument);
+		} else if (_me == 'f') {
+			handleFloat(argument);
+		} else if (_me == 'd' ) {
+			handleDouble(argument);
 		}
-		// if (_me == 'i') {
-		// 	handleInt(argument);
-		// } else if (_me == 'f') {
-		// 	handleFloat(argument);
-		// } else
-		// 	handleDouble(argument);
-
 	}
 }
