@@ -6,7 +6,7 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 11:21:06 by sataskin          #+#    #+#              #
-#    Updated: 2025/02/20 11:48:07 by sataskin         ###   ########.fr        #
+#    Updated: 2025/03/26 12:53:50 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ SOURCE = main.cpp
 
 OBJECT = $(SOURCE:.cpp=.o)
 
+HEADER = whatever.hpp
+
 all: $(NAME)
 
-$(NAME): $(OBJECT)
+$(NAME): $(OBJECT) $(HEADER)
 	c++ -Wall -Wextra -Werror $(OBJECT) -o $(NAME)
 
 %.o: %.cpp

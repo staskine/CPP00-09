@@ -6,21 +6,23 @@
 #    By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 11:21:06 by sataskin          #+#    #+#              #
-#    Updated: 2025/03/26 12:53:23 by sataskin         ###   ########.fr        #
+#    Updated: 2025/03/26 13:39:13 by sataskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Whatever
+NAME = Array
 
 SOURCE = main.cpp 
 
 OBJECT = $(SOURCE:.cpp=.o)
 
-HEADER = iter.hpp
+HEADER = Array.hpp
+
+TEMPLATE= Array.tpp
 
 all: $(NAME)
 
-$(NAME): $(OBJECT) $(HEADER)
+$(NAME): $(OBJECT) $(HEADER) $(TEMPLATE)
 	c++ -Wall -Wextra -Werror $(OBJECT) -o $(NAME)
 
 %.o: %.cpp
