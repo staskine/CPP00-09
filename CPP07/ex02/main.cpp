@@ -83,9 +83,15 @@ int main() {
         std::cout << "arr4[1]: " << arr4[1] << ", arr2[1]: " << arr2[1] << std::endl;
 
         std::cout << "\nTesting exception\n";
-        std::cout << "Attempting to access out-of-bounds index..." << std::endl;
+        std::cout << "Attempting to access out-of-bounds index...\n" << std::endl;
         std::cout << arr2[10] << std::endl; // Should throw an exception
 
+    } catch (const std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
+        std::cout << "\nmaking new fail" << std::endl;
+        Array<int> arr(-1);
     } catch (const std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }

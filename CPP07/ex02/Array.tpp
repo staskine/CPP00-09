@@ -11,7 +11,11 @@ Array<T>::Array() : myArray(nullptr), length(0) {}
 
 template <typename T>
 Array<T>::Array(unsigned int n) : length(n) {
-    myArray = new T[n]();
+    try { 
+        myArray = new T[n]();
+    } catch (const std::bad_alloc& e) {
+        throw std::runtime_error(std::string("New Failed: ") + e.what());
+    }
 }
 
 template <typename T>
@@ -27,7 +31,11 @@ Array<T>& Array<T>::operator=(const Array& other) {
 		if (myArray != NULL)
         	delete[] myArray;
         length = other.length;
-        myArray = new T[length];
+        try { 
+            myArray = new T[length];
+        } catch (const std::bad_alloc& e) {
+            throw std::runtime_error(std::string("New Failed: ") + e.what());
+        }
         for (unsigned int i = 0; i < length; i++)
             myArray[i] = other.myArray[i];
     }
