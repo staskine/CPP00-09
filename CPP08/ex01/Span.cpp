@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:27:07 by sataskin          #+#    #+#             */
-/*   Updated: 2025/04/01 13:09:08 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:10:14 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void Span::addNumber(int num) {
 }
 
 int Span::shortestSpan() const {
-	if (_values.size() <= 2)
+	if (_values.size() < 2)
 		throw std::runtime_error("Not enough values in container");
 	std::vector<int> sortThis = _values;
 	std::sort(sortThis.begin(), sortThis.end());
@@ -52,7 +52,7 @@ int Span::shortestSpan() const {
 }
 
 int Span::longestSpan() const {
-	if (_values.size() <= 2)
+	if (_values.size() < 2)
 		throw std::runtime_error("Not enough values in container");
     int min = *std::min_element(_values.begin(), _values.end());
     int max = *std::max_element(_values.begin(), _values.end());
