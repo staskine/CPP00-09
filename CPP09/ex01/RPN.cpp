@@ -53,7 +53,7 @@ void	calculator(const std::string& input) {
 		}
 	}
 	if (myStack.size() != 1) {
-		std::cerr << "Error" << std::endl;
+		std::cerr << "Error: something in stack" << std::endl;
 		return ;
 	} else {
 		std::cout << myStack.top() << std::endl;
