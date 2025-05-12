@@ -13,13 +13,13 @@ public:
     BitcoinExchange();
     ~BitcoinExchange();
 
-    bool loadDatabase(const std::string& filename); 
-    bool processInput(const std::string& inputFile);
+    bool saveDatabase(std::string const& filename); 
+    bool processInput(std::string const& inputFile);
 
 private:
     std::map<std::string, float> exchangeRates;
-    bool isValidDate(const std::string& date);
-    bool isValidValue(const std::string& value, float& numericValue);
-    bool findClosestDate(const std::string& date, std::string& closestDate);
-    void printResult(const std::string& date, float value, const std::string& closestDate);
+    bool isValidDate(std::string const& date);
+    bool isValidValue(std::string const& value, float& numericValue);
+    bool findClosestDate(std::string const& date, std::string& closestDate);
+    void printResult(std::string const& date, float value, std::string const& closestDate);
 };

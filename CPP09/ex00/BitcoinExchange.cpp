@@ -4,10 +4,10 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-bool BitcoinExchange::loadDatabase(const std::string& filename) {
+bool BitcoinExchange::saveDatabase(std::string const& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: could not open data file." << std::endl;
         return false;
     }
     std::string line;
@@ -25,10 +25,10 @@ bool BitcoinExchange::loadDatabase(const std::string& filename) {
     return true;
 }
 
-bool BitcoinExchange::processInput(const std::string& inputFile) {
+bool BitcoinExchange::processInput(std::string const& inputFile) {
     std::ifstream file(inputFile);
     if (!file.is_open()) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: could not open input file." << std::endl;
         return (false);
     }
 
@@ -36,7 +36,8 @@ bool BitcoinExchange::processInput(const std::string& inputFile) {
     while (std::getline(file, line)) {
 		if (line == "date | value")
         	continue;
-        std::string date, valueStr;
+        std::string date;
+		std::string valueStr;
         size_t separatorPos = line.find(" | ");
         if (separatorPos == std::string::npos) {
             std::cerr << "Error: bad input => " << line << std::endl;
@@ -67,7 +68,7 @@ bool BitcoinExchange::processInput(const std::string& inputFile) {
 	return true;
 }
 
-bool BitcoinExchange::isValidDate(const std::string& date) {
+bool BitcoinExchange::isValidDate(std::string const& date) {
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return false;
 
@@ -85,8 +86,8 @@ bool BitcoinExchange::isValidDate(const std::string& date) {
     return (tm.tm_year == copy.tm_year && tm.tm_mon == copy.tm_mon && tm.tm_mday == copy.tm_mday);
 }
 
-bool BitcoinExchange::isValidValue(const std::string& valueStr, float& numericValue) {
-    try {
+bool BitcoinExchange::isValidValue(std::string const& valueStr, float& numericValue) {
+	try {
         numericValue = std::stof(valueStr);
         if (numericValue < 0 || numericValue > 1000) {
             std::cerr << "Error: must be between 0 - 1000." << std::endl;
@@ -99,7 +100,7 @@ bool BitcoinExchange::isValidValue(const std::string& valueStr, float& numericVa
     return true;
 }
 
-bool BitcoinExchange::findClosestDate(const std::string& date, std::string& closestDate) {
+bool BitcoinExchange::findClosestDate(std::string const& date, std::string& closestDate) {
     auto it = exchangeRates.lower_bound(date);
     if (it == exchangeRates.begin()) {
         return false;
@@ -109,7 +110,7 @@ bool BitcoinExchange::findClosestDate(const std::string& date, std::string& clos
     return true;
 }
 
-void BitcoinExchange::printResult(const std::string& date, float value, const std::string& closestDate) {
+void BitcoinExchange::printResult(std::string const& date, float value, std::string const& closestDate) {
     float rate = exchangeRates.at(closestDate);
     std::cout << date << " => " << value << " = " << value * rate << std::endl;
 }

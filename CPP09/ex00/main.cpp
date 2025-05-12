@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     BitcoinExchange btc;
-    if (!btc.loadDatabase("data.csv"))
+    if (!btc.saveDatabase("data.csv"))
         return 1;
     if (!btc.processInput(argv[1]))
         return 1;
