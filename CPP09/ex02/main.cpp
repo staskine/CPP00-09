@@ -6,7 +6,7 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:23:35 by sataskin          #+#    #+#             */
-/*   Updated: 2025/05/12 11:05:12 by sataskin         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:57:21 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,47 +34,55 @@ bool parsing(const std::string& input) {
     return true;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "Error: No input provided" << std::endl;
+        std::cerr << "Error" << std::endl;
         return 1;
     }
 
-    std::vector<int> vec;
-    std::deque<int> deq;
+    std::vector<int> vecInput;
+    std::deque<int> deqInput;
 
     for (int i = 1; i < argc; ++i) {
-        std::string arg = argv[i];
+        std::string arg(argv[i]);
         if (!parsing(arg)) {
-            std::cerr << "Error: Parsing caught an error in input" << std::endl;
+            std::cerr << "Error" << std::endl;
             return 1;
         }
-        int val = std::stoi(arg);
-        vec.push_back(val);
-        deq.push_back(val);
+        int value = std::stoi(arg);
+        vecInput.push_back(value);
+        deqInput.push_back(value);
     }
 
+    // Display initial array
     std::cout << "Before: ";
-    for (const int& n : vec) std::cout << n << " ";
-        std::cout << std::endl;
-
-    auto startVec = std::chrono::high_resolution_clock::now();
-    PmergeMe::sortVector(vec);
-    auto endVec = std::chrono::high_resolution_clock::now();
-
-    auto startDeq = std::chrono::high_resolution_clock::now();
-    PmergeMe::sortDeque(deq);
-    auto endDeq = std::chrono::high_resolution_clock::now();
-
-    std::cout << "After:  ";
-    for (const int& n : vec) std::cout << n << " ";
+    for (const auto& val : vecInput) {
+        std::cout << val << " ";
+    }
     std::cout << std::endl;
 
-    double vecTime = std::chrono::duration<double>(endVec - startVec).count() * 1e6;
-    double deqTime = std::chrono::duration<double>(endDeq - startDeq).count() * 1e6;
+    // Vector part
+    auto startVec = std::chrono::high_resolution_clock::now();
+    std::vector<int> sortedVec = PmergeMe::sortVector(vecInput);
+    auto endVec = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> durationVec = endVec - startVec;
 
-    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << vecTime << " us" << std::endl;
-    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque  : " << deqTime << " us" << std::endl;
+    // Deque part
+    auto startDeq = std::chrono::high_resolution_clock::now();
+    std::deque<int> sortedDeq = PmergeMe::sortDeque(deqInput);
+    auto endDeq = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> durationDeq = endDeq - startDeq;
+
+    // Display sorted array
+    std::cout << "After:  ";
+    for (const auto& val : sortedVec) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Time to process a range of " << vecInput.size() << " elements with std::vector : " << durationVec.count() << " us" << std::endl;
+
+    std::cout << "Time to process a range of " << deqInput.size() << " elements with std::deque  : " << durationDeq.count() << " us" << std::endl;
 
     return 0;
 }
