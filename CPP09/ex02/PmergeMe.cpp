@@ -87,6 +87,18 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input) {
     // Vector to keep track of which elements of _b have been inserted into the final result
     std::vector<bool> inserted(_b.size(), false);
 
+	// std::cout << "_____________________________________\nThis is for checking!!!!!!\n\na:";
+	// for (const int& val : final) {
+    //     std::cout << val << " ";
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "b: ";
+    // for (const int& val : _b) {
+    //     std::cout << val << " ";
+    // }
+    // std::cout << std::endl;
+
     // Insert elements from _b into the sorted result using the Jacobsthal indices
     for (size_t i = 0; i < jacobsthal.size(); ++i) {
         size_t idx = jacobsthal[i];
@@ -96,6 +108,18 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input) {
             inserted[idx] = true;  // Mark this element as inserted
         }
     }
+
+	// std::cout << "\nThis is after Jacobstahl!!!!!!\n\na:";
+	// for (const int& val : final) {
+    //     std::cout << val << " ";
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "b: ";
+    // for (const int& val : _b) {
+    //     std::cout << val << " ";
+    // }
+    // std::cout << "\n\nPRINTED THEM ALL OUT \n_________________________________________\n "<< std::endl;
 
     // Insert any remaining elements from _b that were not inserted using Jacobsthal indices
 	// This is done to handle overflow.
