@@ -42,7 +42,6 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input) {
     std::vector<size_t> jacobsthal = generateJacobsthalSequence(_b.size());
     std::vector<bool> inserted(_b.size(), false);
 
-    // Improved readability for iterating over Jacobsthal indices
     for (size_t i = 0; i < jacobsthal.size(); ++i) {
         size_t idx = jacobsthal[i];
 
