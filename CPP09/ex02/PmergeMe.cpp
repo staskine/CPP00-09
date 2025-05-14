@@ -30,25 +30,101 @@ std::vector<size_t> PmergeMe::generateJacobsthalSequence(size_t size) {
 }
 
 
-// Function to perform binary insertion of an integer into a sorted vector.
+void PmergeMe::jacobsthalInsert(std::deque<int>& final, const std::deque<int>& _b, const std::deque<int>& _a) {
+    size_t size = _b.size();
+    if (size == 0) return;
 
-void PmergeMe::binaryInsert(std::vector<int>& final, int value) {
-    // Find the position where 'value' should be inserted in 'final' to maintain sorted order
-    auto pos = std::lower_bound(final.begin(), final.end(), value);
-    
-    // Insert the value at the correct position
-    final.insert(pos, value);
+    // Always insert _b[0] first
+    auto it_a = std::find(final.begin(), final.end(), _a[0]);
+    auto pos = std::lower_bound(final.begin(), it_a, _b[0]);
+    final.insert(pos, _b[0]);
+
+    std::vector<size_t> jacob = generateJacobsthalSequence(size);
+    std::vector<bool> inserted(size, false);
+    inserted[0] = true;
+
+    for (size_t i = 1; i < jacob.size(); ++i) {
+        size_t current = jacob[i];
+        size_t previous = jacob[i - 1];
+
+        // Insert elements in reverse between (previous, current]
+        for (size_t j = std::min(current, size - 1); j > previous && j < size; --j) {
+            if (!inserted[j]) {
+                auto it_a = std::find(final.begin(), final.end(), _a[j]);
+                auto pos = std::lower_bound(final.begin(), it_a, _b[j]);
+                final.insert(pos, _b[j]);
+                inserted[j] = true;
+            }
+        }
+
+        // Also insert _b[current] if not already done
+        if (current < size && !inserted[current]) {
+            auto it_a = std::find(final.begin(), final.end(), _a[current]);
+            auto pos = std::lower_bound(final.begin(), it_a, _b[current]);
+            final.insert(pos, _b[current]);
+            inserted[current] = true;
+        }
+    }
+
+    // Fallback for any not yet inserted
+    for (size_t i = 0; i < size; ++i) {
+        if (!inserted[i]) {
+            auto it_a = std::find(final.begin(), final.end(), _a[i]);
+            auto pos = std::lower_bound(final.begin(), it_a, _b[i]);
+            final.insert(pos, _b[i]);
+        }
+    }
 }
 
-// Overloaded function to perform binary insertion of an integer into a sorted deque.
 
-void PmergeMe::binaryInsert(std::deque<int>& final, int value) {
-    // Find the position where 'value' should be inserted in 'final' to maintain sorted order
-    auto pos = std::lower_bound(final.begin(), final.end(), value);
-    
-    // Insert the value at the correct position
-    final.insert(pos, value);
+
+
+void PmergeMe::jacobsthalInsert(std::vector<int>& final, const std::vector<int>& _b, const std::vector<int>& _a) {
+    size_t size = _b.size();
+    if (size == 0) return;
+
+    // Always insert _b[0] first
+    auto it_a = std::find(final.begin(), final.end(), _a[0]);
+    auto pos = std::lower_bound(final.begin(), it_a, _b[0]);
+    final.insert(pos, _b[0]);
+
+    std::vector<size_t> jacob = generateJacobsthalSequence(size);
+    std::vector<bool> inserted(size, false);
+    inserted[0] = true;
+
+    for (size_t i = 1; i < jacob.size(); ++i) {
+        size_t current = jacob[i];
+        size_t previous = jacob[i - 1];
+
+        // Insert elements in reverse between (previous, current]
+        for (size_t j = std::min(current, size - 1); j > previous && j < size; --j) {
+            if (!inserted[j]) {
+                auto it_a = std::find(final.begin(), final.end(), _a[j]);
+                auto pos = std::lower_bound(final.begin(), it_a, _b[j]);
+                final.insert(pos, _b[j]);
+                inserted[j] = true;
+            }
+        }
+
+        // Also insert _b[current] if not already done
+        if (current < size && !inserted[current]) {
+            auto it_a = std::find(final.begin(), final.end(), _a[current]);
+            auto pos = std::lower_bound(final.begin(), it_a, _b[current]);
+            final.insert(pos, _b[current]);
+            inserted[current] = true;
+        }
+    }
+
+    // Fallback for any not yet inserted
+    for (size_t i = 0; i < size; ++i) {
+        if (!inserted[i]) {
+            auto it_a = std::find(final.begin(), final.end(), _a[i]);
+            auto pos = std::lower_bound(final.begin(), it_a, _b[i]);
+            final.insert(pos, _b[i]);
+        }
+    }
 }
+
 
 // Function to sort a vector using a merge approach and the Jacobsthal sequence for insertion.
 
@@ -81,11 +157,6 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input) {
     // Recursively sort vector _a
     std::vector<int> final = sortVector(_a);
     
-    // Generate the Jacobsthal sequence based on the size of _b
-    std::vector<size_t> jacobsthal = generateJacobsthalSequence(_b.size());
-    
-    // Vector to keep track of which elements of _b have been inserted into the final result
-    std::vector<bool> inserted(_b.size(), false);
 
 	// std::cout << "_____________________________________\nThis is for checking!!!!!!\n\na:";
 	// for (const int& val : final) {
@@ -99,34 +170,13 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input) {
     // }
     // std::cout << std::endl;
 
-    // Insert elements from _b into the sorted result using the Jacobsthal indices
-    for (size_t i = 0; i < jacobsthal.size(); ++i) {
-        size_t idx = jacobsthal[i];
-
-        if (idx < _b.size() && !inserted[idx]) {
-            binaryInsert(final, _b[idx]);
-            inserted[idx] = true;  // Mark this element as inserted
-        }
-    }
+    jacobsthalInsert(final, _b, _a);
 
 	// std::cout << "\nThis is after Jacobstahl!!!!!!\n\na:";
 	// for (const int& val : final) {
     //     std::cout << val << " ";
     // }
     // std::cout << std::endl;
-
-    // std::cout << "b: ";
-    // for (const int& val : _b) {
-    //     std::cout << val << " ";
-    // }
-    // std::cout << "\n\nPRINTED THEM ALL OUT \n_________________________________________\n "<< std::endl;
-
-    // Insert any remaining elements from _b that were not inserted using Jacobsthal indices
-	// This is done to handle overflow.
-    for (size_t i = 0; i < _b.size(); ++i) {
-        if (!inserted[i]) 
-            binaryInsert(final, _b[i]);
-    }
 
     // Return the fully sorted vector
     return final;
@@ -162,27 +212,7 @@ std::deque<int> PmergeMe::sortDeque(const std::deque<int>& input) {
     // Recursively sort deque _a
     std::deque<int> final = sortDeque(_a);
     
-    // Generate the Jacobsthal sequence based on the size of _b
-    std::vector<size_t> jacobsthal = generateJacobsthalSequence(_b.size());
-    
-    // Vector to keep track of which elements of _b have been inserted into the final result
-    std::vector<bool> inserted(_b.size(), false);
-
-    // Insert elements from _b into the sorted result using the Jacobsthal indices
-    for (size_t i = 0; i < jacobsthal.size(); ++i) {
-        size_t idx = jacobsthal[i];
-
-        if (idx < _b.size() && !inserted[idx]) {
-            binaryInsert(final, _b[idx]);
-            inserted[idx] = true;  // Mark this element as inserted
-        }
-    }
-
-    // Insert any remaining elements from _b that were not inserted using Jacobsthal indices
-    for (size_t i = 0; i < _b.size(); ++i) {
-        if (!inserted[i]) 
-            binaryInsert(final, _b[i]);
-    }
+    jacobsthalInsert(final, _b, _a);
 
     // Return the fully sorted deque
     return final;
