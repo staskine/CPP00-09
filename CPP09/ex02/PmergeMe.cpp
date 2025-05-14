@@ -32,9 +32,9 @@ std::vector<size_t> PmergeMe::generateJacobsthalSequence(size_t size) {
 
 void PmergeMe::jacobsthalInsert(std::deque<int>& final, const std::deque<int>& _b, const std::deque<int>& _a) {
     size_t size = _b.size();
-    if (size == 0) return;
+    if (size == 0) 
+        return;
 
-    // Always insert _b[0] first
     auto it_a = std::find(final.begin(), final.end(), _a[0]);
     auto pos = std::lower_bound(final.begin(), it_a, _b[0]);
     final.insert(pos, _b[0]);
@@ -66,7 +66,7 @@ void PmergeMe::jacobsthalInsert(std::deque<int>& final, const std::deque<int>& _
         }
     }
 
-    // Fallback for any not yet inserted
+    // Making sure everythong was inserted
     for (size_t i = 0; i < size; ++i) {
         if (!inserted[i]) {
             auto it_a = std::find(final.begin(), final.end(), _a[i]);
@@ -81,9 +81,9 @@ void PmergeMe::jacobsthalInsert(std::deque<int>& final, const std::deque<int>& _
 
 void PmergeMe::jacobsthalInsert(std::vector<int>& final, const std::vector<int>& _b, const std::vector<int>& _a) {
     size_t size = _b.size();
-    if (size == 0) return;
+    if (size == 0) 
+        return;
 
-    // Always insert _b[0] first
     auto it_a = std::find(final.begin(), final.end(), _a[0]);
     auto pos = std::lower_bound(final.begin(), it_a, _b[0]);
     final.insert(pos, _b[0]);
@@ -96,7 +96,7 @@ void PmergeMe::jacobsthalInsert(std::vector<int>& final, const std::vector<int>&
         size_t current = jacob[i];
         size_t previous = jacob[i - 1];
 
-        // Insert elements in reverse between (previous, current]
+        // Insert in reverse between (previous, current]
         for (size_t j = std::min(current, size - 1); j > previous && j < size; --j) {
             if (!inserted[j]) {
                 auto it_a = std::find(final.begin(), final.end(), _a[j]);
@@ -106,7 +106,7 @@ void PmergeMe::jacobsthalInsert(std::vector<int>& final, const std::vector<int>&
             }
         }
 
-        // Also insert _b[current] if not already done
+        // Also insert current one if not already done
         if (current < size && !inserted[current]) {
             auto it_a = std::find(final.begin(), final.end(), _a[current]);
             auto pos = std::lower_bound(final.begin(), it_a, _b[current]);
